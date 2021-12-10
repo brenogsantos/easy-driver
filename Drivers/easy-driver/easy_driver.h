@@ -15,10 +15,15 @@
 
 
 
+
+
+
+
+
+
+
+
 #if GPIO_USED
-
-
-
 
 
 enum gpio_pin {
@@ -80,15 +85,17 @@ enum gpio_pp_pd{
 
 
 
-
 void easyGPIOConfig(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpio_mode Mode);
 
 void easyGPIOConfigFullSet(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpio_mode Mode,
 		enum gpio_pp_pd PUPD, enum gpio_otyper Otyper,
 		enum gpio_ospeed Ospeed);
 
+void easyGPIOSetState(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, uint8_t state);
+
 void easyClearBit(__IO uint32_t *REG, uint8_t pos);
 void easySetBit(__IO uint32_t *REG, uint8_t pos);
+
 
 #endif
 

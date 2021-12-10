@@ -97,6 +97,15 @@ void easyGPIOConfigFullSet(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpi
 
 }
 
+
+void easyGPIOSetState(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, uint8_t state)
+{
+
+	  if(state == 0) easySetBit(&GPIO_Group->BSRR, (Pin + 16)); //reseta
+	  else easySetBit(&GPIO_Group->BSRR, (Pin));
+}
+
+
 void easyClearBit(__IO uint32_t *REG, uint8_t pos)
 {
 	*REG &= ~(1UL << pos);
