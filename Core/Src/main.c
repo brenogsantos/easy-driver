@@ -1,4 +1,4 @@
-#include "easy_driver.h"
+#include "../../Drivers/easy-driver/easy_driver.h"
 
 
 int main(void)
@@ -13,12 +13,12 @@ int main(void)
 	//GPIOA->OSPEEDR |= (1<<3) | (1<<1); // Pino A1 (bits 3:2)
 	//GPIOA->PUPDR &= ~((1<<2) | (1<<3));
 	easyGPIOConfig(GPIOA, PIN_1, OUTPUT);
-	easyGPIOConfig(GPIOE, PIN_3, INPUT);
+	easyGPIOConfigFullSet(GPIOE, PIN_3,INPUT, PULLUP, OUT_PUSH_PULL, OUT_FREQ_LOW);
 
 	//PE3
-	RCC->AHB4ENR |= (1<<4); //Habilita o clock do GPIOE
-	GPIOE->MODER &= 0xFFFFFF3F;
-	GPIOE->PUPDR |= ((1<<6) | (0<<7));
+	//RCC->AHB4ENR |= (1<<4); //Habilita o clock do GPIOE
+	//GPIOE->MODER &= 0xFFFFFF3F;
+	//GPIOE->PUPDR |= ((1<<6) | (0<<7));
 
 
   while (1)
