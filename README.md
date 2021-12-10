@@ -15,7 +15,7 @@
 
 # About the Project
 The idea of this driver is to provide a more intuitive driver than HAL, and improve my C / ARM skills. In addition, this driver aims to provide various functions for testing, such as ready-made functions of various sensors, math and control functions, digital filters, handling of standard protocols (UART, I2C, SPI, etc) and much more.
-### ***Currently the driver only supports H7 families***
+### ***Currently the driver only supports H7 series***
 - [x] H7
 - [ ] F1
 - [ ] ..
