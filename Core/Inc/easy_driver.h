@@ -5,8 +5,8 @@
  *      Author: breno
  */
 
-#ifndef INC_EASY_DRIVE_H_
-#define INC_EASY_DRIVE_H_
+#ifndef INC_EASY_DRIVER_H_
+#define INC_EASY_DRIVER_H_
 
 
 #include "stm32h7xx.h"
@@ -15,8 +15,9 @@
 
 
 
-
 #if GPIO_USED
+
+
 
 
 
@@ -68,6 +69,7 @@ enum gpio_pp_pd{
 	PULLDOWN = (0x2U)   /*!< Pull-down activation                */
 };
 
+
 #define  GPIO_MODE_IT_RISING                    (0x11110000U)   /*!< External Interrupt Mode with Rising edge trigger detection          */
 #define  GPIO_MODE_IT_FALLING                   (0x11210000U)   /*!< External Interrupt Mode with Falling edge trigger detection         */
 #define  GPIO_MODE_IT_RISING_FALLING            (0x11310000U)   /*!< External Interrupt Mode with Rising/Falling edge trigger detection  */
@@ -78,22 +80,15 @@ enum gpio_pp_pd{
 
 
 
-typedef struct{
-
-	enum gpio_pp_pd PUPD;
-	enum gpio_otyper Otyper;
-	enum gpio_ospeed Ospeed;
-
-}f_args;
-
-
-
 
 void easyGPIOConfig(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpio_mode Mode);
 
 void easyGPIOConfigFullSet(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpio_mode Mode,
 		enum gpio_pp_pd PUPD, enum gpio_otyper Otyper,
 		enum gpio_ospeed Ospeed);
+
+void easyClearBit(__IO uint32_t *REG, uint8_t pos);
+void easySetBit(__IO uint32_t *REG, uint8_t pos);
 
 #endif
 
@@ -103,4 +98,4 @@ void easyGPIOConfigFullSet(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpi
 
 
 
-#endif /* INC_EASY_DRIVE_H_ */
+#endif /* INC_EASY_DRIVER_H_ */
