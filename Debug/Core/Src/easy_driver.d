@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/easy_driver.h \
+Core/Src/easy_driver.o: ../Core/Src/easy_driver.c \
+ ../Core/Inc/easy_driver.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h \
  ../Drivers/CMSIS/Include/core_cm7.h \

@@ -1,0 +1,2 @@
+easy_driver.c:11:6:easyGPIOConfig	32	static
+easy_driver.c:45:6:easyGPIOConfigFullSet	16	static

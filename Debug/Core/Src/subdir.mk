@@ -5,17 +5,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/easy_drive.c \
+../Core/Src/easy_driver.c \
 ../Core/Src/main.c \
 ../Core/Src/system_stm32h7xx.c 
 
 OBJS += \
-./Core/Src/easy_drive.o \
+./Core/Src/easy_driver.o \
 ./Core/Src/main.o \
 ./Core/Src/system_stm32h7xx.o 
 
 C_DEPS += \
-./Core/Src/easy_drive.d \
+./Core/Src/easy_driver.d \
 ./Core/Src/main.d \
 ./Core/Src/system_stm32h7xx.d 
 

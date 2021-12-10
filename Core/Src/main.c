@@ -1,8 +1,11 @@
-#include <easy_drive.h>
+#include <easy_driver.h>
 
 
 int main(void)
 {
+	for(int i = 0; i < 1000000; i ++){
+
+	}
 	//PA1
 	//RCC->AHB4ENR |= (1<<0); //Habilita o clock do GPIOA
 	//GPIOA->MODER &= 0xFFFFFFF4; // pino PE1(bits 3:2) como Output (01), pino PE0(bits 1:0) como Input (00)
@@ -18,12 +21,17 @@ int main(void)
 
   while (1)
   {
-	  if(GPIOE->IDR>>3 == 0){
-		  GPIOA->BSRR |= (1<<17);//seta PA1
+	  uint32_t j = 0;
+
+		for(int i = 0; i < 1000000; i ++){
+			j++;
+		}
+	 /* if(GPIOE->IDR>>3 == 0){
+		 // GPIOA->BSRR |= (1<<17);//seta PA1
 	  }
 	  else
-		  GPIOA->BSRR |= (1<<1);//reseta PA1
-
+		//  GPIOA->BSRR |= (1<<1);//reseta PA1
+*/
   }
 
 }

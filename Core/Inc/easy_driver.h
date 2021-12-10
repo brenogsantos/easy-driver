@@ -18,27 +18,26 @@
 
 #if GPIO_USED
 
-#define easyGPIOConfigFullSet(...) easyGPIOConfig((f_args){__VA_ARGS__});
 
 
 enum gpio_pin {
-	PIN_0 = ((uint16_t)0x0001),  /* Pin 0 selected    */
-	PIN_1 = ((uint16_t)0x0002),  /* Pin 1 selected    */
-	PIN_2 = ((uint16_t)0x0004),  /* Pin 2 selected    */
-	PIN_3 = ((uint16_t)0x0008),  /* Pin 3 selected    */
-	PIN_4 = ((uint16_t)0x0010),  /* Pin 4 selected    */
-	PIN_5 = ((uint16_t)0x0020),  /* Pin 5 selected    */
-	PIN_6 = ((uint16_t)0x0040),  /* Pin 6 selected    */
-	PIN_7 = ((uint16_t)0x0080),  /* Pin 7 selected    */
-	PIN_8 = ((uint16_t)0x0100),  /* Pin 8 selected    */
-	PIN_9 = ((uint16_t)0x0200),  /* Pin 9 selected    */
-	PIN_10 = ((uint16_t)0x0400),  /* Pin 10 selected   */
-	PIN_11 = ((uint16_t)0x0800),  /* Pin 11 selected   */
-	PIN_12 = ((uint16_t)0x1000),  /* Pin 12 selected   */
-	PIN_13 = ((uint16_t)0x2000), /* Pin 13 selected   */
-	PIN_14 = ((uint16_t)0x4000),  /* Pin 14 selected   */
-	PIN_15 = ((uint16_t)0x8000),  /* Pin 15 selected   */
-	PIN_All = ((uint16_t)0xFFFF),  /* All pins selected */
+	PIN_0 = ((uint8_t)0),  /* Pin 0 selected    */
+	PIN_1 = ((uint8_t)1),  /* Pin 1 selected    */
+	PIN_2 = ((uint8_t)2),  /* Pin 2 selected    */
+	PIN_3 = ((uint8_t)3),  /* Pin 3 selected    */
+	PIN_4 = ((uint8_t)4),  /* Pin 4 selected    */
+	PIN_5 = ((uint8_t)5),  /* Pin 5 selected    */
+	PIN_6 = ((uint8_t)6),  /* Pin 6 selected    */
+	PIN_7 = ((uint8_t)7),  /* Pin 7 selected    */
+	PIN_8 = ((uint8_t)8),  /* Pin 8 selected    */
+	PIN_9 = ((uint8_t)9),  /* Pin 9 selected    */
+	PIN_10 = ((uint8_t)10),  /* Pin 10 selected   */
+	PIN_11 = ((uint8_t)11),  /* Pin 11 selected   */
+	PIN_12 = ((uint8_t)12),  /* Pin 12 selected   */
+	PIN_13 = ((uint8_t)13), /* Pin 13 selected   */
+	PIN_14 = ((uint8_t)14),  /* Pin 14 selected   */
+	PIN_15 = ((uint8_t)15),  /* Pin 15 selected   */
+	PIN_All = ((uint8_t)0xFF),  /* All pins selected */
 
 	PIN_MASK = (0x0000FFFFU) /* PIN mask for assert test */
 };
@@ -52,8 +51,8 @@ enum gpio_mode {
 };
 
 enum gpio_otyper {
-	OUT_PUSH_PULL = (0x0U),
-	OUT_OPEN_DRAIN = (0x1U)
+	OUT_PUSH_PULL = (0x0UL),
+	OUT_OPEN_DRAIN = (0x1UL)
 };
 
 enum gpio_ospeed {
@@ -90,7 +89,7 @@ typedef struct{
 
 
 
-void easyGPIOConfig(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpio_mode Mode, f_args in);
+void easyGPIOConfig(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpio_mode Mode);
 
 void easyGPIOConfigFullSet(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpio_mode Mode,
 		enum gpio_pp_pd PUPD, enum gpio_otyper Otyper,
