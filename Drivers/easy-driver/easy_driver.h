@@ -91,6 +91,7 @@ void easyGPIOConfigFullSet(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, enum gpi
 		enum gpio_ospeed Ospeed);
 void easyGPIOSetState(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, uint8_t state);
 void easyGPIOToggle(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin);
+uint8_t easyGPIOReadState(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin);
 void easyGPIOCheckClock(GPIO_TypeDef *GPIO_Group);
 
 

@@ -104,6 +104,22 @@ void easyGPIOSetState(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin, uint8_t state
 	  else easySetBit(&GPIO_Group->BSRR, (Pin));
 }
 
+uint8_t easyGPIOReadState(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin){
+
+	uint8_t state;
+
+	if(easyReadBit(&GPIO_Group->MODER, (Pin+Pin+1)) == 0U && easyReadBit(&GPIO_Group->MODER, (Pin+Pin)) == 0U)
+	{	//INPUT
+		state = easyReadBit(&GPIO_Group->IDR, Pin);
+	}
+	else if(easyReadBit(&GPIO_Group->MODER, (Pin+Pin+1)) == 0U && easyReadBit(&GPIO_Group->MODER, (Pin+Pin)) == 1U)
+	{	//OUTPUT
+		state = easyReadBit(&GPIO_Group->ODR, Pin);
+	}
+
+	return state;
+}
+
 void easyGPIOToggle(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin)
 {
 

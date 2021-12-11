@@ -13,13 +13,12 @@ int main(void)
 	easyGPIOSetState(GPIOA, 1, SET);
   while (1)
   {
-	  uint32_t j = 0;
 
-		for(int i = 0; i < 1000; i ++){
-			j++;
-		}
-	  if(GPIOE->IDR>>3 == 0){
+		uint8_t state;
+		state = easyGPIOReadState(GPIOE, PIN_3);
+	  if(state == 0){
 		 easyGPIOToggle(GPIOA, PIN_1);
+		 state = easyGPIOReadState(GPIOA, PIN_1);
 	  }
 
   }
