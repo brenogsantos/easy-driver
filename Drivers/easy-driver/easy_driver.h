@@ -12,7 +12,7 @@
 #include "stm32h7xx.h"
 
 #define GPIO_USED 1
-
+#define USART_USED 1
 
 
 
@@ -51,7 +51,7 @@ enum gpio_pin {
 enum gpio_mode {
 	INPUT = (0x0U),
 	OUTPUT = (0x1U),
-	AF = (0x10U),
+	ALTERNATE_FUNCTION = (0x10U),
 	ANALOG = (0x3U)
 
 };
@@ -96,13 +96,30 @@ void easyGPIOCheckClock(GPIO_TypeDef *GPIO_Group);
 
 
 
+#endif
+
+#if USART_USED
+
+
+void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin_TX, enum gpio_pin Pin_RX);
+void easyUSARTSendChar(USART_TypeDef *USART_Group, uint8_t c);
+void easyUSARTSendString(USART_TypeDef *USART_Group, char *string);
+void easyUSARTCheckClock(USART_TypeDef *USART_Group);
+
+
+
+#endif
+
+
+
+
+
 
 void easyClearBit(__IO uint32_t *REG, uint8_t pos);
 void easySetBit(__IO uint32_t *REG, uint8_t pos);
 uint8_t easyReadBit(__IO uint32_t *REG, uint8_t pos);
 
 
-#endif
 
 
 

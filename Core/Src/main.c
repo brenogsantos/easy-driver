@@ -8,18 +8,23 @@ int main(void)
 	}
 
 	easyGPIOConfig(GPIOA, PIN_1, OUTPUT);
-	easyGPIOConfigFullSet(GPIOE, PIN_3,INPUT, PULLUP, OUT_PUSH_PULL, OUT_FREQ_LOW);
+	easyGPIOConfigFullSet(GPIOE, PIN_3,INPUT, PULLUP, 0, 0);
+	easyUSARTConfig(USART1, GPIOB, PIN_14, PIN_15);
+
 
 	easyGPIOSetState(GPIOA, 1, SET);
   while (1)
   {
 
-		uint8_t state;
-		state = easyGPIOReadState(GPIOE, PIN_3);
-	  if(state == 0){
-		 easyGPIOToggle(GPIOA, PIN_1);
-		 state = easyGPIOReadState(GPIOA, PIN_1);
-	  }
+	uint8_t state;
+	state = easyGPIOReadState(GPIOE, PIN_3);
+	if(state == 0){
+		easyGPIOToggle(GPIOA, PIN_1);
+	}
+	easyUSARTSendString(USART1, "deu certo\n");
+	for(int i = 0; i < 1000000; i ++){
+
+	}
 
   }
 
