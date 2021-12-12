@@ -23,7 +23,7 @@ int main(void)
 	}
 	easyUSARTSendString(USART1, "deu certo\n");
 	for(int i = 0; i < 1000000; i ++){
-
+		easyUSARTprintf(USART1, "%d\n", i);
 	}
 
   }

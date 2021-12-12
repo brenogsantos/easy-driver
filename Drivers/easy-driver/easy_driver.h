@@ -105,7 +105,7 @@ void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum 
 void easyUSARTSendChar(USART_TypeDef *USART_Group, uint8_t c);
 void easyUSARTSendString(USART_TypeDef *USART_Group, char *string);
 void easyUSARTCheckClock(USART_TypeDef *USART_Group);
-
+void easyUSARTprintf(USART_TypeDef *USART_Group, char* format, ...);
 
 
 #endif
