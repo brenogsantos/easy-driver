@@ -143,7 +143,7 @@ void easyGPIOToggle(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin)
 
 //UART
 
-void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin_TX, enum gpio_pin Pin_RX)
+void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin_TX, enum gpio_pin Pin_RX, uint32_t baudrate)
 {
 
 	uint8_t afr_pos_tx, afr_pos_rx;
@@ -185,7 +185,7 @@ void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum 
 	if(RCC->D2CFGR){};
 	USART_Group->CR1 = 0x00;
 	easySetBit(&USART_Group->CR1, 0);
-	USART_Group->BRR |= (3 << 0) | (34 << 4);	//baudrate 115200 32MHz
+	easySetUSARTBaudrate(USART_Group, baudrate);
 	easySetBit(&USART_Group->CR1, 2);	//REN
 
 
@@ -230,6 +230,13 @@ void easyUSARTCheckClock(USART_TypeDef *USART_Group)	//it enables the gpiogroup 
 	}
 
 }
+
+void easySetUSARTBaudrate(USART_TypeDef *USART_Group, uint32_t baudrate)
+{
+	uint32_t UD = (USART_CLOCK + USART_CLOCK) / baudrate;
+	USART_Group->BRR |= (((0xF & (UD>>1)) << 0) | ((UD >> 4) << 4)); //usartdiv
+}
+
 
 void easyUSARTSendChar(USART_TypeDef *USART_Group, uint8_t c)
 {

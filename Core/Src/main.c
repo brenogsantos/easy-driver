@@ -9,7 +9,7 @@ int main(void)
 
 	easyGPIOConfig(GPIOA, PIN_1, OUTPUT);
 	easyGPIOConfigFullSet(GPIOE, PIN_3,INPUT, PULLUP, 0, 0);
-	easyUSARTConfig(USART1, GPIOB, PIN_14, PIN_15);
+	easyUSARTConfig(USART1, GPIOB, PIN_14, PIN_15, 115200);
 
 
 	easyGPIOSetState(GPIOA, 1, SET);
