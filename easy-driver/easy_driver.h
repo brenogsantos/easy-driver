@@ -14,7 +14,7 @@
 #define GPIO_USED 1
 #define USART_USED 1
 
-
+#define USART_CLOCK 32000000 //fix this later
 
 
 
@@ -101,12 +101,12 @@ void easyGPIOCheckClock(GPIO_TypeDef *GPIO_Group);
 #if USART_USED
 
 
-void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin_TX, enum gpio_pin Pin_RX);
+void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin_TX, enum gpio_pin Pin_RX, uint32_t baudrate);
 void easyUSARTSendChar(USART_TypeDef *USART_Group, uint8_t c);
 void easyUSARTSendString(USART_TypeDef *USART_Group, char *string);
 void easyUSARTCheckClock(USART_TypeDef *USART_Group);
-
-
+void easyUSARTprintf(USART_TypeDef *USART_Group, char* format, ...);
+void easySetUSARTBaudrate(USART_TypeDef *USART_Group, uint32_t baudrate);
 
 #endif
 

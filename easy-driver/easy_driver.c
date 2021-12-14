@@ -7,6 +7,8 @@
 
 
 #include "easy_driver.h"
+#include "stdarg.h"
+#include <stdio.h>
 
 #if defined(STM32H750xx)
 GPIO_TypeDef *ref_gpio_group[] = {GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH, GPIOI, GPIOJ, GPIOK};
@@ -141,7 +143,7 @@ void easyGPIOToggle(GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin)
 
 //UART
 
-void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin_TX, enum gpio_pin Pin_RX)
+void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum gpio_pin Pin_TX, enum gpio_pin Pin_RX, uint32_t baudrate)
 {
 
 	uint8_t afr_pos_tx, afr_pos_rx;
@@ -162,9 +164,6 @@ void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum 
 	else afr_pos_rx = 0;
 
 
-
-
-
 	/** AF 0100 da H7 series **/
 	Pin_TX = (4*Pin_TX);
 	Pin_RX = (4*Pin_RX);
@@ -181,12 +180,12 @@ void easyUSARTConfig(USART_TypeDef *USART_Group, GPIO_TypeDef *GPIO_Group, enum 
 	easyClearBit(&GPIO_Group->AFR[afr_pos_rx], Pin_RX);
 	/** AF 0100 da H7 series **/
 
-
+	//SystemCoreClock
 	easyUSARTCheckClock(USART_Group);
-
+	if(RCC->D2CFGR){};
 	USART_Group->CR1 = 0x00;
 	easySetBit(&USART_Group->CR1, 0);
-	USART_Group->BRR |= (3 << 0) | (34 << 4);	//baudrate 115200
+	easySetUSARTBaudrate(USART_Group, baudrate);
 	easySetBit(&USART_Group->CR1, 2);	//REN
 
 
@@ -232,6 +231,13 @@ void easyUSARTCheckClock(USART_TypeDef *USART_Group)	//it enables the gpiogroup 
 
 }
 
+void easySetUSARTBaudrate(USART_TypeDef *USART_Group, uint32_t baudrate)
+{
+	uint32_t UD = (USART_CLOCK + USART_CLOCK) / baudrate;
+	USART_Group->BRR |= (((0xF & (UD>>1)) << 0) | ((UD >> 4) << 4)); //usartdiv
+}
+
+
 void easyUSARTSendChar(USART_TypeDef *USART_Group, uint8_t c)
 {
 	easySetBit(&USART_Group->CR1, 3);	//TEN
@@ -245,6 +251,19 @@ void easyUSARTSendString(USART_TypeDef *USART_Group, char *string)
 	while (*string) easyUSARTSendChar(USART_Group, *string++);
 }
 
+void easyUSARTprintf(USART_TypeDef *USART_Group, char* format, ...){
+
+	char buffer[100];
+	buffer[0] = '\0';
+
+	va_list argList;
+
+	va_start(argList, format);
+	vsprintf(buffer, format, argList);
+	easyUSARTSendString(USART_Group, buffer);
+	va_end(argList);
+
+}
 
 
 

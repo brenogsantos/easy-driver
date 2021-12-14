@@ -946,11 +946,11 @@ LOAD /home/breno/st/stm32cubeide_1.7.0/plugins/com.st.stm32cube.ide.mcu.external
  .debug_macro   0x00000000000291e0       0x16 ./Drivers/easy-driver/easy_driver.o
  .debug_macro   0x00000000000291f6      0x145 ./Drivers/easy-driver/easy_driver.o
 
-.debug_line     0x0000000000000000     0x164f
- .debug_line    0x0000000000000000      0x4c2 ./Core/Src/main.o
- .debug_line    0x00000000000004c2      0x761 ./Core/Src/system_stm32h7xx.o
- .debug_line    0x0000000000000c23       0x88 ./Core/Startup/startup_stm32h750vbtx.o
- .debug_line    0x0000000000000cab      0x9a4 ./Drivers/easy-driver/easy_driver.o
+.debug_line     0x0000000000000000     0x1650
+ .debug_line    0x0000000000000000      0x4c3 ./Core/Src/main.o
+ .debug_line    0x00000000000004c3      0x761 ./Core/Src/system_stm32h7xx.o
+ .debug_line    0x0000000000000c24       0x88 ./Core/Startup/startup_stm32h750vbtx.o
+ .debug_line    0x0000000000000cac      0x9a4 ./Drivers/easy-driver/easy_driver.o
 
 .debug_str      0x0000000000000000    0xebb01
  .debug_str     0x0000000000000000    0xe66f7 ./Core/Src/main.o
